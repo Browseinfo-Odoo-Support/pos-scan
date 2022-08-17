@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+	<templates id="pos_scan_barcod" inherit_id="point_of_sale.template" xml:space="preserve">	
+		<t t-name="QRButton" owl="1">
+            <t>
+        <div class='control-button'>
+                <a style="color:#000;display:block;" class="btn btn-primary start_barcode" id="js_id_bi_sale_barcode_mobile_start_btn">
+                	<i class='fa fa-qrcode' />
+                	Start
+                </a>
+        </div>
+        </t>
+    </t>
+    <t t-name="scanqrcode" owl='1'>
+        <div role='dialog' class='modal-dialog'>
+            <Draggable>
+                <div class='popup popup-confirm'>
+                    <header class='title drag-handle'>
+                        <t t-esc="props.title"/>
+                    </header>
+                    <main class='body'>
+                        <div id="reader"></div>
+                    </main>
+                    <footer class="footer">
+                        <div class="button confirm" t-on-click="confirm">
+                            <t t-esc="props.confirmText" />
+                        </div>
+                        <div class="button cancel" t-on-click="cancel">
+                            <t t-esc="props.cancelText" />
+                        </div>
+                        <div class="button resume">
+                            <t t-esc="props.ResumeText" />
+                        </div>
+                        <div class="button pause">
+                            <t t-esc="props.PauseText" />
+                        </div>
+                    </footer>                
+                </div>
+            </Draggable>
+        </div>
+    </t>
+
+</templates>
