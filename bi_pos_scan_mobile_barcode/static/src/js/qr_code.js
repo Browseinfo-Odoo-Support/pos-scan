@@ -5,6 +5,7 @@ odoo.define('bi_pos_scan_mobile_barcode.ScanQrCode', function (require) {
     const Registries = require('point_of_sale.Registries');
     const {posbus} = require('point_of_sale.utils');
     const {useState} = owl.hooks;
+    const { Gui } = require('point_of_sale.Gui');
 //     // To use Html5QrcodeScanner (more info below)
 // import {Html5QrcodeScanner} from "html5-qrcode"
 

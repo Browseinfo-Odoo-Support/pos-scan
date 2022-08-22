@@ -3,7 +3,7 @@
 
 {
     'name': 'Generate Product QR Code',
-    'version': '15.0.0.2',
+    'version': '15.0.0.3',
     'category': 'Sales',
     'summary': 'Create Product QRCode generator product QR code generator for product generate QRCode for product variant QR code for product generate Product QRcode Generate Product QR code Auto QR code generator for product auto QRcode generator for product barcode',
     'description': """

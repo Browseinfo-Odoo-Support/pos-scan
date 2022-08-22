@@ -3,7 +3,7 @@
 
 {
     "name" : "POS Mobile Barcode Scanner | POS Mobile QRCode Scanner",
-    "version" : "15.0.0.0",
+    "version" : "15.0.0.1",
     "category" : "",
     'summary': 'POS Mobile Barcode Scanner | POS Mobile QRCode Scanner',
     "description": """
@@ -17,11 +17,8 @@
     "currency": 'EUR',
     "depends" : ['point_of_sale','bi_qr_generator'],
     "data": [
-        # 'views/pos_assets.xml',
         'views/pos_config_view.xml',
     ],
-    # 'qweb': ['static/src/xml/pos.xml'
-    # ],
     'assets': {
         'point_of_sale.assets': [
             'bi_pos_scan_mobile_barcode/static/src/js/iao-alert.jquery.js',

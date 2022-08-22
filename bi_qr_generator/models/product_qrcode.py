@@ -11,7 +11,7 @@ class ProductScreenEnable(models.Model):
     _inherit = "product.template"
 
     name = fields.Char(string="Name")
-    qr_code = fields.Char('QR Code', tracking=True)
+    qr_code = fields.Char('QR Code', tracking=True, compute='_compute_qr_code', inverse='_set_qr_code', store=True)
     qr_image = fields.Binary(string="QR Image", attachment=True, store=True , compute="_compute_generate_qr_code")
 
 
@@ -19,16 +19,32 @@ class ProductScreenEnable(models.Model):
         ('unique_qrcode', 'unique (qr_code)', 'QR Code address already exists!')
     ]
 
+    @api.depends('product_variant_ids.qr_code')
+    def _compute_qr_code(self):
+        self.qr_code = False
+        for template in self:
+            if len(template.product_variant_ids) == 1:
+                template.qr_code = template.product_variant_ids.qr_code
+
+
+    def _set_qr_code(self):
+        if len(self.product_variant_ids) == 1:
+            self.product_variant_ids.qr_code = self.qr_code
+
     @api.model_create_multi
     def create(self, vals_list):
         '''
             for autogenerate sequence in QR Code
         '''
+        pro = super(ProductScreenEnable, self).create(vals_list)
+
         for value in vals_list:
+            if value.get('qr_code'):
+                pro['qr_code'] = value['qr_code']
             res = self.env["res.config.settings"].sudo().search([], limit=1, order="id desc").product_qr_code_generator
             if res == True:
                 value['qr_code'] = self.env['ir.sequence'].next_by_code('product.template')
-        return super(ProductScreenEnable, self).create(vals_list)
+        return pro
 
     @api.depends('qr_code')
     def _compute_generate_qr_code(self):
